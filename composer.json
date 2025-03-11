@@ -1,0 +1,54 @@
+{
+  "name": "blaspsoft/socialiteplus",
+  "description": "SocialitePlus is a Laravel package that simplifies social authentication by extending Laravel Socialite. It provides predefined Google, Facebook, GitHub, and LinkedIn login options for seamless integration into Laravel 12 Vue and React Starter Kits ",
+  "keywords": [
+    "blaspsoft",
+    "socialiteplus"
+  ],
+  "homepage": "https://github.com/blaspsoft/socialiteplus",
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Michael Deeming",
+      "email": "mike.deeming@blaspsoft.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^8.0|^8.1|^8.2",
+    "illuminate/support": "^12.0",
+    "laravel/socialite": "^5.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^10.0",
+    "phpunit/phpunit": "^10.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Blaspsoft\\SocialitePlus\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Blaspsoft\\SocialitePlus\\Tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit",
+    "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Blaspsoft\\SocialitePlus\\SocialitePlusServiceProvider"
+      ],
+      "aliases": {
+        "SocialitePlus": "Blaspsoft\\SocialitePlus\\SocialitePlusFacade"
+      }
+    }
+  }
+}
