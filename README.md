@@ -93,7 +93,15 @@ php artisan config:cache
 4️⃣ Add the Middleware to Routes
 
 ```php
+use App\Http\Middleware\HandleSocialitePlusProviders;
 
+Route::get('register', [RegisteredUserController::class, 'create'])
+    ->middleware(HandleSocialitePlusProviders::class)
+    ->name('register');
+
+Route::get('login', [AuthenticatedSessionController::class, 'create'])
+    ->middleware(HandleSocialitePlusProviders::class)
+    ->name('login');
 ```
 
 5️⃣ Create OAuth Apps in Social Providers
@@ -184,13 +192,61 @@ return [
 
 8️⃣ Update the register and login pages
 
-new pages have been placed in your app, you need to update the controllers to use the new pages.
+You need to update your controllers to use these pages and pass the required props.
+
+### React Pages
+
+- `resources/js/pages/auth/register-social.tsx`
+- `resources/js/pages/auth/login-social.tsx`
+
+### Vue Pages
+
+- `resources/js/pages/auth/RegisterSocial.vue`
+- `resources/js/pages/auth/LoginSocial.vue`
+
+Modify AuthenticatedSessionController.php for Login
+Ensure the login controller passes providersConfig as a prop:
+
+```php
+    public function create(Request $request): Response
+    {
+        // React
+        return Inertia::render('auth/login-social', [
+            'canResetPassword' => Route::has('password.request'),
+            'status' => $request->session()->get('status'),
+            'providersConfig' => $request->attributes->get('providersConfig'),
+        ]);
+
+        // Vue
+        return Inertia::render('auth/LoginSocial', [
+            'canResetPassword' => Route::has('password.request'),
+            'status' => $request->session()->get('status'),
+            'providersConfig' => $request->attributes->get('providersConfig'),
+        ]);
+    }
+```
+
+Modify RegisteredUserController.php for Register
+Ensure the login controller passes providersConfig as a prop:
+
+```php
+    public function create(Request $request): Response
+    {
+        // React
+        return Inertia::render('auth/register-social', [
+            'providersConfig' => $request->attributes->get('providersConfig'),
+        ]);
+
+        // Vue
+        return Inertia::render('auth/RegisterSocial', [
+            'providersConfig' => $request->attributes->get('providersConfig'),
+        ]);
+    }
+```
 
 ---
 
 ## 🧪 Testing
-
-Keysmith React includes tests in `tests/Feature/ApiToken/`:
 
 Run the tests with:
 
