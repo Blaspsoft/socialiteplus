@@ -90,7 +90,13 @@ php artisan config:cache
 
 ---
 
-4️⃣ Create OAuth Apps in Social Providers
+4️⃣ Add the Middleware to Routes
+
+```php
+
+```
+
+5️⃣ Create OAuth Apps in Social Providers
 
 To enable authentication, you need to register your application with each provider and obtain Client ID and Secret and set the redirect URI:
 
@@ -100,7 +106,7 @@ https://your-app.com/auth/social/{provider}/callback
 
 ---
 
-5️⃣ Set Environment Variables
+6️⃣ Set Environment Variables
 
 Update your .env file with the credentials obtained from each provider:
 
@@ -124,7 +130,7 @@ LINKEDIN_REDIRECT=https://yourapp.com/auth/social/linkedin/callback
 
 ---
 
-6️⃣ Configure Socialite Plus
+7️⃣ Configure Socialite Plus
 
 Modify the config/socialiteplus.php file to customize settings:
 
@@ -173,6 +179,14 @@ return [
 ];
 
 ```
+
+---
+
+8️⃣ Update the register and login pages
+
+new pages have been placed in your app, you need to update the controllers to use the new pages.
+
+---
 
 ## 🧪 Testing
 
