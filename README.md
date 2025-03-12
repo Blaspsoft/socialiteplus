@@ -149,7 +149,7 @@ return [
     'providers' => [
         'google' => [
             'active' => true,
-            'style' => 'bg-red-500 text-white',
+            'branded' => false,
             'name' => 'Google',
             'icon' => 'GoogleIcon',
             'client_id' => env('GOOGLE_CLIENT_ID'),
@@ -158,7 +158,7 @@ return [
         ],
         'facebook' => [
             'active' => true,
-            'style' => 'bg-blue-500 text-white',
+            'branded' => false,
             'name' => 'Facebook',
             'icon' => 'FacebookIcon',
             'client_id' => env('FACEBOOK_CLIENT_ID'),
@@ -167,7 +167,7 @@ return [
         ],
         'github' => [
             'active' => true,
-            'style' => '',
+            'branded' => false,
             'name' => 'GitHub',
             'icon' => 'GithubIcon',
             'client_id' => env('GITHUB_CLIENT_ID'),
@@ -176,7 +176,7 @@ return [
         ],
         'linkedin' => [
             'active' => true,
-            'style' => 'bg-sky-500 text-white',
+            'branded' => false,
             'name' => 'LinkedIn',
             'icon' => 'LinkedInIcon',
             'client_id' => env('LINKEDIN_CLIENT_ID'),
