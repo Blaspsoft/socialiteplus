@@ -248,11 +248,22 @@ Ensure the login controller passes providersConfig as a prop:
 
 ## 🧪 Testing
 
-Run the tests with:
+The package includes tests located in the `tests/Feature/SocialitePlus` directory. These tests ensure that the core functionalities of the package are working as expected.
+
+### Test Files
+
+- **`HandleSocialitePlusProvidersTest.php`**: Tests the middleware responsible for filtering active social providers.
+- **`SocialitePlusControllerTest.php`**: Tests the controller handling social authentication redirects and callbacks.
+
+### Running Tests
+
+To run the tests, use the following command:
 
 ```bash
 php artisan test
 ```
+
+This command will execute all the tests and provide feedback on their success or failure.
 
 ---
 

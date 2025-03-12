@@ -29,6 +29,9 @@ class SocialitePlusServiceProvider extends ServiceProvider
             (new Filesystem)->ensureDirectoryExists(app_path('Http/Middleware'));
             (new Filesystem)->copyDirectory(__DIR__.'/../stubs/app/Http/Middleware', app_path('Http/Middleware'));
 
+            (new Filesystem)->ensureDirectoryExists(base_path('tests/Feature/SocialitePlus'));
+            (new Filesystem)->copyDirectory(__DIR__.'/../stubs/tests/Feature/SocialitePlus', base_path('tests/Feature/SocialitePlus'));
+
             $this->commands([
                 Console\InstallCommand::class,
             ]);
