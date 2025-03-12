@@ -18,7 +18,7 @@ class HandleSocialitePlusProviders
         $providers = collect(config('socialiteplus.providers'))->filter(fn ($provider) => $provider['active'])->map(fn ($provider) => [
             'name' => $provider['name'],
             'icon' => $provider['icon'],
-            'style' => $provider['style'],
+            'branded' => $provider['branded'],
         ])->toArray();
 
         $providerConfig = config('socialiteplus');

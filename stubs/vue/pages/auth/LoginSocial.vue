@@ -9,12 +9,13 @@ import AuthBase from "@/layouts/AuthLayout.vue";
 import { Head, useForm } from "@inertiajs/vue3";
 import { LoaderCircle } from "lucide-vue-next";
 import SocialitePlus from "@/components/SocialitePlus.vue";
+
 defineProps<{
   status?: string;
   canResetPassword: boolean;
   providersConfig: {
     button_text: string;
-    providers: { name: string; icon: string; style: string }[];
+    providers: { name: string; icon: string; branded: boolean }[];
   };
 }>();
 

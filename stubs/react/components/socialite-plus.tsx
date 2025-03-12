@@ -4,12 +4,42 @@ import GoogleIcon from "@/components/icons/google";
 import { Button } from "@/components/ui/button";
 import LinkedInIcon from "./icons/linkedin";
 
+interface Provider {
+  name: string;
+  icon: "FacebookIcon" | "GithubIcon" | "GoogleIcon" | "LinkedInIcon";
+  branded: boolean;
+}
+
 interface SocialitePlusProps {
   providersConfig: {
     button_text: string;
-    providers: { name: string; icon: string; style: string }[];
+    providers: Provider[];
   };
 }
+
+const getProviderClasses = (provider: Provider) => {
+  if (!provider.branded) return;
+
+  const styles: Record<string, string> = {
+    Google:
+      "bg-red-500 hover:bg-red-600 hover:text-white text-white dark:bg-red-600 dark:hover:bg-red-700",
+    Facebook:
+      "bg-blue-600 hover:bg-blue-700 hover:text-white text-white dark:bg-blue-700 dark:hover:bg-blue-800",
+    Github:
+      "bg-gray-900 hover:bg-gray-700 hover:text-white text-white dark:border-white dark:bg-transparent dark:hover:bg-gray-900",
+    LinkedIn:
+      "bg-blue-700 hover:bg-blue-800 hover:text-white text-white dark:bg-blue-800 dark:hover:bg-blue-900",
+  };
+
+  return styles[provider.name] || "";
+};
+
+const iconMap = {
+  GoogleIcon: GoogleIcon,
+  FacebookIcon: FacebookIcon,
+  GithubIcon: GithubIcon,
+  LinkedInIcon: LinkedInIcon,
+};
 
 export default function SocialitePlus({ providersConfig }: SocialitePlusProps) {
   return (
@@ -25,31 +55,26 @@ export default function SocialitePlus({ providersConfig }: SocialitePlusProps) {
       </div>
 
       <div className="flex flex-col gap-4">
-        {Object.values(providersConfig.providers).map((provider) => (
-          <Button
-            key={provider.name}
-            type="button"
-            variant="outline"
-            className={`${provider.style}`}
-            tabIndex={5}
-            onClick={() => {
-              window.location.href = route("social.redirect", {
-                provider: provider.name,
-              });
-            }}
-          >
-            {provider.icon === "FacebookIcon" ? (
-              <FacebookIcon className="size-6" />
-            ) : provider.icon === "GithubIcon" ? (
-              <GithubIcon className="size-6" />
-            ) : provider.icon === "GoogleIcon" ? (
-              <GoogleIcon className="size-6" />
-            ) : provider.icon === "LinkedInIcon" ? (
-              <LinkedInIcon className="size-6" />
-            ) : null}
-            {providersConfig.button_text.replace("{provider}", provider.name)}
-          </Button>
-        ))}
+        {providersConfig.providers.map((provider) => {
+          const IconComponent = iconMap[provider.icon];
+          return (
+            <Button
+              key={provider.name}
+              type="button"
+              variant="outline"
+              className={getProviderClasses(provider)}
+              tabIndex={5}
+              onClick={() =>
+                (window.location.href = route("social.redirect", {
+                  provider: provider.name,
+                }))
+              }
+            >
+              {IconComponent && <IconComponent className="size-6" />}
+              {providersConfig.button_text.replace("{provider}", provider.name)}
+            </Button>
+          );
+        })}
       </div>
     </>
   );
