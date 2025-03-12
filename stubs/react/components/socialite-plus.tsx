@@ -1,12 +1,12 @@
 import FacebookIcon from "@/components/icons/facebook";
-import GithubIcon from "@/components/icons/github";
 import GoogleIcon from "@/components/icons/google";
 import { Button } from "@/components/ui/button";
+import GitHubIcon from "./icons/github";
 import LinkedInIcon from "./icons/linkedin";
 
 interface Provider {
   name: string;
-  icon: "FacebookIcon" | "GithubIcon" | "GoogleIcon" | "LinkedInIcon";
+  icon: "FacebookIcon" | "GitHubIcon" | "GoogleIcon" | "LinkedInIcon";
   branded: boolean;
 }
 
@@ -25,7 +25,7 @@ const getProviderClasses = (provider: Provider) => {
       "bg-red-500 hover:bg-red-600 hover:text-white text-white dark:bg-red-600 dark:hover:bg-red-700",
     Facebook:
       "bg-blue-600 hover:bg-blue-700 hover:text-white text-white dark:bg-blue-700 dark:hover:bg-blue-800",
-    Github:
+    GitHub:
       "bg-gray-900 hover:bg-gray-700 hover:text-white text-white dark:border-white dark:bg-transparent dark:hover:bg-gray-900",
     LinkedIn:
       "bg-blue-700 hover:bg-blue-800 hover:text-white text-white dark:bg-blue-800 dark:hover:bg-blue-900",
@@ -37,25 +37,25 @@ const getProviderClasses = (provider: Provider) => {
 const iconMap = {
   GoogleIcon: GoogleIcon,
   FacebookIcon: FacebookIcon,
-  GithubIcon: GithubIcon,
+  GitHubIcon: GitHubIcon,
   LinkedInIcon: LinkedInIcon,
 };
 
 export default function SocialitePlus({ providersConfig }: SocialitePlusProps) {
   return (
     <>
-      <div className="flex gap-4 items-center">
+      <div className="flex items-center gap-4">
         <div className="flex-1">
-          <div className="w-full h-px bg-border" />
+          <div className="bg-border h-px w-full" />
         </div>
         or
         <div className="flex-1">
-          <div className="w-full h-px bg-border" />
+          <div className="bg-border h-px w-full" />
         </div>
       </div>
 
       <div className="flex flex-col gap-4">
-        {providersConfig.providers.map((provider) => {
+        {Object.values(providersConfig.providers).map((provider) => {
           const IconComponent = iconMap[provider.icon];
           return (
             <Button
