@@ -13,6 +13,12 @@
 
 ---
 
+## 🎥 SocialitePlus Video Tutorial
+
+[![Watch the Tutorial](https://img.youtube.com/vi/X96PTlPUlaQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=X96PTlPUlaQ)
+
+**▶️ Click the image above to watch the tutorial on YouTube!**
+
 ## ✨ Features
 
 - ✅ Predefined Social Login Pages – Ready-to-use authentication pages built with React & Vue.
