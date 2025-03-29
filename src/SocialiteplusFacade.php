@@ -5,9 +5,9 @@ namespace Blaspsoft\Socialiteplus;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Blaspsoft\Socialiteplus\Skeleton\SkeletonClass
+ * @see \Blaspsoft\SocialitePlus\SocialitePlusFactory
  */
-class SocialiteplusFacade extends Facade
+class SocialitePlusFacade extends Facade
 {
     /**
      * Get the registered name of the component.
