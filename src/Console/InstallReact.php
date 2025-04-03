@@ -20,5 +20,8 @@ trait InstallReact
 
         (new Filesystem)->ensureDirectoryExists(resource_path('js/components/icons'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/react/components/icons', resource_path('js/components/icons'));
+
+        (new Filesystem)->ensureDirectoryExists(base_path('tests/Feature/SocialitePlus'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../stubs/tests/Feature/SocialitePlus', base_path('tests/Feature/SocialitePlus'));
     }
 }
