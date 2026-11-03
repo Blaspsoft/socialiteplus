@@ -7,6 +7,9 @@
     </p>
 </p>
 
+> [!WARNING]
+> **This package is no longer maintained.** The repository has been archived and the package is marked as abandoned on Packagist. It will not receive further updates, bug fixes or support for new Laravel versions. You're welcome to fork it if you need changes.
+
 # Socialite Plus - Laravel Socialite made even easier
 
 **Socialite Plus** is a Laravel 12 React & Vue Starterkit package that streamlines social login for Google, Facebook, GitHub and LinkedIn.
