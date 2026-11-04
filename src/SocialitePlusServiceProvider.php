@@ -23,11 +23,7 @@ class SocialitePlusServiceProvider extends ServiceProvider
                 __DIR__.'/../config/config.php' => config_path('socialiteplus.php'),
             ], 'socialiteplus-config');
 
-            (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
-            (new Filesystem)->copyDirectory(__DIR__.'/../stubs/app/Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
-
-            (new Filesystem)->ensureDirectoryExists(app_path('Http/Middleware'));
-            (new Filesystem)->copyDirectory(__DIR__.'/../stubs/app/Http/Middleware', app_path('Http/Middleware'));
+            $this->copyDirectories();
 
             $this->commands([
                 Console\InstallCommand::class,
@@ -45,5 +41,27 @@ class SocialitePlusServiceProvider extends ServiceProvider
         $this->app->singleton('socialiteplus', function () {
             return new SocialitePlusFactory;
         });
+    }
+
+    /**
+     * Copy controller and middleware directories into app
+     *
+     * @return void
+     */
+    private function copyDirectories()
+    {
+        $fs = new Filesystem;
+        
+        $fs->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
+        $targetController = app_path('Http/Controllers/Auth/SocialitePlusController.php');
+        if (! $fs->exists($targetController)) {
+            $fs->copyDirectory(__DIR__.'/../stubs/app/Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
+        }
+        
+        $fs->ensureDirectoryExists(app_path('Http/Middleware'));
+        $targetMiddleware = app_path('Http/Middleware/HandleSocialitePlusProviders.php');
+        if (! $fs->exists($targetMiddleware)) {
+            $fs->copyDirectory(__DIR__.'/../stubs/app/Http/Middleware', app_path('Http/Middleware'));
+        }
     }
 }
